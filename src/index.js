@@ -6,7 +6,7 @@ const menuContainer = document.querySelector('.js-menu');
 
 const cardsMenu = createCardsMenu(cards);
 
-menuContainer.insertAdjacentElement('beforeend', cardsMenu);
+menuContainer.insertAdjacentHTML('afterbegin', cardsMenu);
 
 function createCardsMenu(cards) {
   return cards.map(cardMenuTml).join('');
