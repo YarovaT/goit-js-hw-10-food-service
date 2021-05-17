@@ -17,8 +17,8 @@ function createCardsMenu(cards) {
 По умолчанию тема светлая.
 При изменении темы, необходимо добавлять на элемент body класс light-theme или dark-theme.
 Выбранная тема должна сохраняться между перезагрузками страницы. Для хранения темы используй localStorage.
-Если при загрузке страницы тема тёмная, не забудь поставить свойство checked у чекбокса #theme-switch-toggle в true, чтобы ползунок сдвинулся в правильное положение.
-Для удобства хранения списка тем используй такое перечисление.*/
+Если при загрузке страницы тема тёмная, не забудь поставить свойство checked у чекбокса #theme-switch-toggle в true,
+чтобы ползунок сдвинулся в правильное положение.*/
 
 const Theme = {
   LIGHT: 'light-theme',
@@ -35,31 +35,32 @@ function changedTheme(evt) {
 
 /*Добавляет тему по умолчанию.*/
 function defaultTheme() {
-  const currentTheme = localStorage.getItem('theme');
-  if (currentTheme === Theme.LIGHT || currentTheme === null) {
-    lightTheme();
-    return;
-  }
+  const currentTheme = localStorage.getItem('background');
 
   if (currentTheme === Theme.DARK) {
     darkTheme();
     return;
   }
+
+  lightTheme();
 }
 
-defaultTheme();
-
 /*добавляeт на элемент body класс light-theme или dark-theme.*/
+
+const replaceTheme = (oldTheme, newTheme) => {
+  document.body.classList.add(newTheme);
+  document.body.classList.remove(oldTheme);
+  localStorage.setItem('background', newTheme);
+};
+
 function darkTheme() {
-  document.body.classList.add(Theme.DARK);
-  document.body.classList.remove(Theme.LIGHT);
-  localStorage.setItem('background', Theme.DARK);
+  replaceTheme(Theme.LIGHT, Theme.DARK);
+
   inputRef.checked = true;
 }
 
 function lightTheme() {
-  document.body.classList.add(Theme.LIGHT);
-  document.body.classList.remove(Theme.DARK);
-  localStorage.setItem('background', Theme.LIGHT);
+  replaceTheme(Theme.DARK, Theme.LIGHT);
+
   inputRef.checked = false;
 }
