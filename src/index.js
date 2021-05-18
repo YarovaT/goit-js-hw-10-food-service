@@ -58,7 +58,7 @@ function defaultTheme() {
   const currentTheme = localStorage.getItem('background');
 
   if (currentTheme === Theme.DARK) {
-    lightTheme();
+    darkTheme();
     return;
   }
 
