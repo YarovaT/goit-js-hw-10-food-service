@@ -33,18 +33,6 @@ function changedTheme(evt) {
   evt.currentTarget.checked ? darkTheme() : lightTheme();
 }
 
-/*Добавляет тему по умолчанию.*/
-function defaultTheme() {
-  const currentTheme = localStorage.getItem('background');
-
-  if (currentTheme === Theme.DARK) {
-    darkTheme();
-    return;
-  }
-
-  lightTheme();
-}
-
 /*добавляeт на элемент body класс light-theme или dark-theme.*/
 
 const replaceTheme = (oldTheme, newTheme) => {
@@ -64,3 +52,17 @@ function lightTheme() {
 
   inputRef.checked = false;
 }
+
+/*Добавляет тему по умолчанию.*/
+function defaultTheme() {
+  const currentTheme = localStorage.getItem('background');
+
+  if (currentTheme === Theme.DARK) {
+    lightTheme();
+    return;
+  }
+
+  darkTheme();
+}
+
+defaultTheme();
