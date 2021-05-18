@@ -62,7 +62,7 @@ function defaultTheme() {
     return;
   }
 
-  darkTheme();
+  lightTheme();
 }
 
 defaultTheme();
